@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas Coliseo Municipal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>RESERVAS DEL COLISEO<br> JUAN EVO MORALES AYMA <br> COSAPA</h1>
+  </header>
+
+  <!-- Menú -->
+  <nav>
+    <a href="#reserva">Reservar</a>
+    <a href="#horarios">Horarios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- Formulario -->
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Reservas del Coliseo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #1c446d;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* ===== FORMULARIO ===== */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, button {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* ===== TABLA ===== */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #e9ecef;
+    }
+
+    button.reservar {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button.reservado {
+      background-color: #dc3545;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <section class="container" id="reserva">
+    <h2>Formulario de Reserva</h2>
+    <form id="formReserva">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" required>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" required>
+
+      <label for="dia">Día de la semana:</label>
+      <select id="dia" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sábado">Sábado</option>
+        <option value="Domingo">Domingo</option>
+      </select>
+
+      <label for="hora">Hora:</label>
+      <select id="hora" required>
+        <option value="">-- Selecciona --</option>
+        <option>05:00 - 06:00</option>
+        <option>06:00 - 07:00</option>
+        <option>07:00 - 08:00</option>
+        <option>08:00 - 09:00</option>
+        <option>09:00 - 10:00</option>
+        <option>10:00 - 11:00</option>
+        <option>11:00 - 12:00</option>
+        <option>12:00 - 13:00</option>
+        <option>13:00 - 14:00</option>
+        <option>14:00 - 15:00</option>
+        <option>15:00 - 16:00</option>
+        <option>16:00 - 17:00</option>
+        <option>17:00 - 18:00</option>
+        <option>18:00 - 19:00</option>
+        <option>19:00 - 20:00</option>
+        <option>20:00 - 21:00</option>
+        <option>21:00 - 22:00</option>
+      </select>
+
+      <label for="evento">Tipo de evento:</label>
+      <select id="evento">
+        <option>Deportivo</option>
+        <option>Cultural</option>
+        <option>Social</option>
+      </select>
+
+      <button type="submit">Reservar</button>
+    </form>
+  </section>
+
+  <section class="container" id="horarios">
+    <h2>Cuadro de Reservas (Lunes a Domingo)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Lunes <br> 10-11-25</th>
+          <th>Martes  <br>   11-11-25</th>
+          <th>Miércoles <br> 12-11-25</th>
+          <th>Jueves  <br>  13-11-25</th>
+          <th>Viernes  <br>  14-11-25</th>
+          <th>Sábado  <br>   15-11-25</th>
+          <th>Domingo  <br>  16-11-25</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-reservas"></tbody>
+    </table>
+  </section>
+
+  <script>
+    const horarios = [
+      "05:00 - 06:00","06:00 - 07:00","07:00 - 08:00","08:00 - 09:00",
+      "09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00",
+      "13:00 - 14:00","14:00 - 15:00","15:00 - 16:00","16:00 - 17:00",
+      "17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","20:00 - 21:00","21:00 - 22:00"
+    ];
+    const dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+    const tabla = document.getElementById("tabla-reservas");
+
+    // Generar tabla dinámica
+    horarios.forEach(hora => {
+      const fila = document.createElement("tr");
+      const celdaHora = document.createElement("td");
+      celdaHora.textContent = hora;
+      fila.appendChild(celdaHora);
+
+      dias.forEach(dia => {
+        const celda = document.createElement("td");
+        const boton = document.createElement("button");
+        boton.textContent = "Reservar";
+        boton.classList.add("reservar");
+        boton.dataset.dia = dia;
+        boton.dataset.hora = hora;
+
+        boton.onclick = function () {
+          if (!this.classList.contains("reservado")) {
+            this.classList.add("reservado");
+            this.textContent = "Reservado";
+          }
+        };
+
+        celda.appendChild(boton);
+        fila.appendChild(celda);
+      });
+
+      tabla.appendChild(fila);
+    });
+
+    // Enlazar formulario con la tabla
+    document.getElementById("formReserva").addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const fecha = document.getElementById("fecha").value;
+      const dia = document.getElementById("dia").value;
+      const hora = document.getElementById("hora").value;
+      const evento = document.getElementById("evento").value;
+
+      if (!dia || !hora) {
+        alert("Por favor, selecciona un día y una hora válidos.");
+        return;
+      }
+
+      // Buscar el botón correspondiente
+      const botones = document.querySelectorAll("button.reservar");
+      let reservado = false;
+
+      botones.forEach(boton => {
+        if (boton.dataset.dia === dia && boton.dataset.hora === hora) {
+          if (!boton.classList.contains("reservado")) {
+            boton.classList.add("reservado");
+            boton.textContent = "Reservado";
+            reservado = true;
+          }
+        }
+      });
+
+      if (reservado) {
+        alert(`✅ Reserva registrada:\nNombre: ${nombre}\nFecha: ${fecha}\nDía: ${dia}\nHora: ${hora}\nEvento: ${evento}`);
+        e.target.reset();
+      } else {
+        alert("⚠️ Ese horario ya está reservado o no existe.");
+      }
+    });
+  </script>
+</body>
+</html>
+  <!-- Galería -->
+  <section class="container" id="galeria">
+    <h2>Galería</h2>
+    <div class="galeria">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20250927_181429_edit_64051399099003.jpg" alt="Imagen 1">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20250927_181145_edit_64014272613340.jpg" alt="Imagen 2">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251029_180830.jpg" alt="Imagen 3">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170837_edit_63934524732381.jpg" alt="Imagen 4">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170817_edit_63945674145189.jpg" alt="Imagen 5">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170800_edit_63955063901019.jpg" alt="Imagen 6">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170913_edit_63967294679035.jpg" alt="Imagen 7">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170930_edit_63979368389343.jpg" alt="Imagen 8">
+      <img src="c:\Users\USUARIO\Downloads\IMG_20251018_170927_edit_63985329804497.jpg" alt="Imagen 9">
+      
+    
+  
+      
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="container" id="contacto">
+    <h2>Contacto</h2>
+    <div class="contacto">
+      <p><strong>Teléfono:</strong> +591 72515203</p>
+      <p><strong>Dirección:Oruro-Cosapa-Bolivia</strong></p>
+    </div>
+  </section>
+  
+<!-- ====== SECCIÓN DE CÓDIGOS QR ====== -->
+ <section class="container" id="paga"></section>
+  <h2>Codigo Qr de Pago</h2>
+  <div class="qr-container">
+  
+
+    <!-- Primer QR -->
+    <div class="qr-card">
+      <h3>CONTACTANOS</h3>
+      <img src="c:\Users\USUARIO\Downloads\IMG-20251109-WA0042.jpg" alt="QR página principal">
+      <p>Paga de una nueva forma</p>
+    </div>
+
+  </div>
+</section>
+<!-- ====== FIN SECCIÓN QR ====== -->
+  <!-- Footer -->
+  <footer>
+    <p>&copy;Coliseo Juan Evo Morales Ayma 2025 </p>
+  </footer>
+</body>
+</html>
